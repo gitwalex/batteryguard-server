@@ -1,8 +1,7 @@
 {
-	"name": "gerwalex",
-	"type": "module",
+	"name": "batteryguard",
 	"version": "0.0.1",
-	"description": "gerwalex server",
+	"description": "Batteryguard Server",
 	"main": "gerwalex.js",
 	"scripts": {
 		"start": "node gerwalex.js"
