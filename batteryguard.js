@@ -15,8 +15,10 @@ const SimpleNodeLogger = require('simple-node-logger'),
 	}
 const log = SimpleNodeLogger.createRollingFileLogger(opts);
 
+const isDevel = (process.env.NODE_ENV == "development")
+
+
 function post(conn, request, response) {
-	log.info("Batteryguard is called");
 	let body = [];
 	request.on('error', (err) => {
 		log.error(err);
@@ -26,7 +28,9 @@ function post(conn, request, response) {
 	}).on('end', async () => {
 		body = Buffer.concat(body).toString();
 		const json = JSON.parse(body);
-		log.info("test ->" + JSON.stringify(json));
+		if (isDevel) {
+			log.info("post ->" + JSON.stringify(json));
+		}
 		await doWork(conn, json, response);
 	});
 };
@@ -151,8 +155,9 @@ async function insertToken(conn, json) {
 				log.error(err);
 				return 400;
 			} else {
-				log.info("InsertToken: Token bereits vorhanden");
-				return 255; // token bereits vorhanden - ist ok
+				if (isDevel) {
+					log.info("InsertToken: Token bereits vorhanden");
+				} return 255; // token bereits vorhanden - ist ok
 			}
 		});
 
@@ -377,40 +382,36 @@ async function removeFromGroup(conn, json, response) {
  */
 
 async function sendGroupOperationMessage(conn, json) {
-	if (json.groupname != null) {
-		const sql = "SELECT token FROM devicedata WHERE groupname = ? order by token"
-		let ids = await conn.query(sql, json.groupname)
-			.then(rows => {
-				let ids = [];
-				for (let row of rows) {
-					if (row.token != json.sender) {
-						ids.push(row.token);
-					}
+	const sql =
+		"SELECT token FROM devicedata WHERE groupname = ? order by token"
+	let ids = await conn.query(sql, json.groupname)
+		.then(rows => {
+			let ids = [];
+			for (let row of rows) {
+				if (row.token != json.sender) {
+					ids.push(row.token);
 				}
-				return ids
-			}).catch(err => {
-				log.error("GetTokens group: " + json.groupname + ", Error" + err);
-				return [];
-			});
-
-		if (ids.length > 0) {
-			const message = {
-				"Content-Type": "application/json",
-				"operation": json.operation,
-				"registration_ids": ids,
-				"groupname": json.groupname,
-				"data": json
 			}
-			return await sendMessage(conn, message);
-		} else {
-			log.error("Leere Gruppe: " + json.groupname + ", sender: " + json.sender);
-			// Gruppe ist leer (oder nur sich selbst als Member)
-			return 251;
+			return ids
+		}).catch(err => {
+			log.error("GetTokens group: " + json.groupname + ", Error" + err);
+			return [];
+		});
+
+	if (ids.length > 0) {
+		const message = {
+			"Content-Type": "application/json",
+			"operation": json.operation,
+			"registration_ids": ids,
+			"groupname": json.groupname,
+			"data": json
 		}
+		return await sendMessage(conn, message);
 	} else {
-		log.error("Missing groupname: " + JSON.stringify(json));
-		return 250;
-	};
+		log.error("Leere Gruppe: " + json.groupname + ", sender: " + json.sender);
+		// Gruppe ist leer (oder nur sich selbst als Member)
+		return 251;
+	}
 };
 /**
  * @param {JSON} json 
@@ -419,13 +420,13 @@ async function sendGroupOperationMessage(conn, json) {
 
 async function sendMessage(conn, message) {
 	message.priority = message.data.priority;
-	log.info("sendMsg -> " + JSON.stringify(message));
 	return axios.post(env.parsed.fcmBase, message, {
 		headers: fcmHeaders
 	}).then((result) => {
 		let json = result.data;
-		log.info("sendMsgResult -> " + JSON.stringify(json));
 		if (json.failure != "0") {
+		log.info("sendMsg -> " + JSON.stringify(message));
+		log.info("sendMsgResult -> " + JSON.stringify(json));
 			executeFCMFailures(conn, message, json.results);
 		}
 		return 200;
@@ -496,10 +497,11 @@ async function updateDeviceData(conn, json) {
 			json.battery.low || null,
 			json.battery.high || null,
 			json.battery.temperature || null,
+			json.version || null,
 			json.sender
 		];
 		const sql = "Update devicedata set percent = ? , timeRemaining =? , isCharging = ?,isPlugged = ?, currentAvg = ?, " +
-			"low = ?,high = ?, temperature = ? where token = ? ";
+			"low = ?,high = ?, temperature = ?, version = ? where token = ? ";
 		conn.query(sql, values).catch(err => {
 			log.error(err);
 		});
