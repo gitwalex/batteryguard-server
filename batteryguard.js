@@ -17,6 +17,11 @@ const log = SimpleNodeLogger.createRollingFileLogger(opts);
 
 const isDevel = (process.env.NODE_ENV == "development")
 
+function logDebug(text) {
+	if (isDevel) {
+		log.info(text)
+	}
+};
 
 function post(conn, request, response) {
 	let body = [];
@@ -28,9 +33,7 @@ function post(conn, request, response) {
 	}).on('end', async () => {
 		body = Buffer.concat(body).toString();
 		const json = JSON.parse(body);
-		if (isDevel) {
-			log.info("post ->" + JSON.stringify(json));
-		}
+		logDebug("post ->" + JSON.stringify(json));
 		await doWork(conn, json, response);
 	});
 };
@@ -144,7 +147,7 @@ async function insertToken(conn, json) {
 	return conn.query(sql, values)
 		.then(rows => {
 			if (rows.affectedRows == "0") {
-				log.error('insertTokent hat nicht geklappt: 451');
+				log.error('insertToken hat nicht geklappt: 451');
 				return 451; // Insert hat nicht geklappt
 			} else {
 				log.info("Neues Device: " + devicename);
@@ -155,9 +158,8 @@ async function insertToken(conn, json) {
 				log.error(err);
 				return 400;
 			} else {
-				if (isDevel) {
-					log.info("InsertToken: Token bereits vorhanden");
-				} return 255; // token bereits vorhanden - ist ok
+				logDebug("InsertToken: Token bereits vorhanden");
+				return 255; // token bereits vorhanden - ist ok
 			}
 		});
 
@@ -375,6 +377,7 @@ async function removeFromGroup(conn, json, response) {
 			response.status(400).json(err);
 		});
 };
+
 /**
  * @param {mariadb.Connection} conn 
  * @param {JSON} json 
@@ -384,34 +387,35 @@ async function removeFromGroup(conn, json, response) {
 async function sendGroupOperationMessage(conn, json) {
 	const sql =
 		"SELECT token FROM devicedata WHERE groupname = ? order by token"
-	let ids = await conn.query(sql, json.groupname)
-		.then(rows => {
+	return await conn.query(sql, json.groupname)
+		.then(async rows => {
+			if (rows.length == 0) {
+				log.error("Leere Gruppe: " + json.groupname + ", sender: " + json.sender.slice(0, 12));
+				return 251;
+			}
+			if (rows.length == 1) {
+				logDebug("Leere Gruppe (nur ein Member): " + json.groupname + ", sender: " + json.sender.slice(0, 12));
+				return 251;
+			}
 			let ids = [];
 			for (let row of rows) {
 				if (row.token != json.sender) {
 					ids.push(row.token);
 				}
 			}
-			return ids
-		}).catch(err => {
+			const message = {
+				"Content-Type": "application/json",
+				"operation": json.operation,
+				"registration_ids": ids,
+				"groupname": json.groupname,
+				"data": json
+			}
+			return await sendMessage(conn, message);
+		})
+		.catch(err => {
 			log.error("GetTokens group: " + json.groupname + ", Error" + err);
-			return [];
+			return 251;
 		});
-
-	if (ids.length > 0) {
-		const message = {
-			"Content-Type": "application/json",
-			"operation": json.operation,
-			"registration_ids": ids,
-			"groupname": json.groupname,
-			"data": json
-		}
-		return await sendMessage(conn, message);
-	} else {
-		log.error("Leere Gruppe: " + json.groupname + ", sender: " + json.sender);
-		// Gruppe ist leer (oder nur sich selbst als Member)
-		return 251;
-	}
 };
 /**
  * @param {JSON} json 
@@ -425,8 +429,8 @@ async function sendMessage(conn, message) {
 	}).then((result) => {
 		let json = result.data;
 		if (json.failure != "0") {
-		log.info("sendMsg -> " + JSON.stringify(message));
-		log.info("sendMsgResult -> " + JSON.stringify(json));
+			log.info("sendMsg -> " + JSON.stringify(message));
+			log.info("sendMsgResult -> " + JSON.stringify(json));
 			executeFCMFailures(conn, message, json.results);
 		}
 		return 200;
@@ -457,7 +461,7 @@ async function executeFCMFailures(conn, body, results) {
 						"groupname": body.groupname
 					}
 					sendGroupOperationMessage(conn, message);
-					log.info("Device deleted: " + id);
+					log.info("Device deleted: " + id.slice(0, 10));
 				})
 				.catch(err => {
 					log.error("executeFCMFailure: " + err);
