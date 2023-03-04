@@ -393,15 +393,15 @@ async function sendGroupOperationMessage(conn, json) {
 				log.error("Leere Gruppe: " + json.groupname + ", sender: " + json.sender.slice(0, 12));
 				return 251;
 			}
-			if (rows.length == 1) {
-				logDebug("Leere Gruppe (nur ein Member): " + json.groupname + ", sender: " + json.sender.slice(0, 12));
-				return 251;
-			}
 			let ids = [];
 			for (let row of rows) {
 				if (row.token != json.sender) {
 					ids.push(row.token);
 				}
+			}
+			if (ids.length == 0) {
+				logDebug("Sender == Empfänger: " + json.groupname + ", sender: " + json.sender.slice(0, 12));
+				return 251;
 			}
 			const message = {
 				"Content-Type": "application/json",
