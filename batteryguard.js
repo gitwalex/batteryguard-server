@@ -94,6 +94,9 @@ const doWork = async (conn, json, response) => {
     case "SignOutDevice":
       signOutDevice(conn, json, response);
       break;
+    case "Echo":
+      sendEcho(conn, json, response);
+      break;
     default:
       let msg = "Operation " + json.operation + " not valid";
       log.error(msg);
@@ -183,7 +186,7 @@ async function updateToken(conn, json, response) {
     status = await insertToken(conn, json);
     response
       .status(status)
-      .json({ result: "operation " + json.operation + ", Status: " + status });
+      .json({ result: `operation ${json.operation} , Status: ${status}` });
   } else {
     const sql = "UPDATE devicedata SET token = ? WHERE token = ? ";
     conn
@@ -328,6 +331,28 @@ async function joinGroupAccept(conn, json, response) {
  * @param {Response<any, Record<string, any>, number>} response
  */
 
+async function sendEcho(conn, json, response) {
+  var d = new Date();
+  var n = d.toLocaleTimeString();
+  const messsage = {
+    "Content-Type": "application/json",
+    operation: json.operation,
+    to: json.sender,
+    notification: {
+      title: "Battery Guard",
+      body: `Message received at ${n}`,
+    },
+    data: json,
+  };
+  const result = await sendMessage(conn, messsage);
+  response.status(result).json({ result: "Server ok" });
+}
+/**
+ * @param {mariadb.Connection} conn
+ * @param {JSON} json
+ * @param {Response<any, Record<string, any>, number>} response
+ */
+
 async function joinGroupDeny(conn, json, response) {
   const messsage = {
     "Content-Type": "application/json",
@@ -443,23 +468,18 @@ async function sendGroupOperationMessage(conn, json) {
           ids.push(row.token);
         }
       }
-      if (ids.length == 0) {
-        logDebug(
-          "Sender == Empfänger: " +
-            json.groupname +
-            ", sender: " +
-            json.sender.slice(0, 12)
-        );
-        return 251;
+      if (ids.length != 0) {
+        const message = {
+          "Content-Type": "application/json",
+          operation: json.operation,
+          registration_ids: ids,
+          groupname: json.groupname,
+          data: json,
+        };
+        return await sendMessage(conn, message);
+      } else {
+        return 250;
       }
-      const message = {
-        "Content-Type": "application/json",
-        operation: json.operation,
-        registration_ids: ids,
-        groupname: json.groupname,
-        data: json,
-      };
-      return await sendMessage(conn, message);
     })
     .catch((err) => {
       log.error("GetTokens group: " + json.groupname + ", Error" + err);
