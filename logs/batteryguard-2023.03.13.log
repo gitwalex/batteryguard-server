@@ -1,0 +1,108 @@
+2023-03-13 13:41:40,394 ERROR Parameter at position 2 is undefined
+INSERT INTO devicedata (token, devicename) values (?,?) - parameters:['ebHW2nDKTjWErV6T9pZoUz:APA91bEBc9efKC0ljf2rZtivMf6rkCF38glBN6QLjqKToFb1bCl3SZuS96bs_9uXJ_QE6XLY8FEy1gVZLzms8bhFzd9L_POceK_ztrfLu6lK6B5R46Xxn_SSQm4eiJoPpGVi1WRbR-Ks',undefined]
+sql: INSERT INTO devicedata (token, devicename) values (?,?) - parameters:['ebHW2nDKTjWErV6T9pZoUz:APA91bEBc9efKC0ljf2rZtivMf6rkCF38glBN6QLjqKToFb1bCl3SZuS96bs_9uXJ_QE6XLY8FEy1gVZLzms8bhFzd9L_POceK_ztrfLu6lK6B5R46Xxn_SSQm4eiJoPpGVi1WRbR-Ks',undefined]
+{"name":"SqlError","text":"Parameter at position 2 is undefined\nINSERT INTO devicedata (token, devicename) values (?,?) - parameters:['ebHW2nDKTjWErV6T9pZoUz:APA91bEBc9efKC0ljf2rZtivMf6rkCF38glBN6QLjqKToFb1bCl3SZuS96bs_9uXJ_QE6XLY8FEy1gVZLzms8bhFzd9L_POceK_ztrfLu6lK6B5R46Xxn_SSQm4eiJoPpGVi1WRbR-Ks',undefined]","sql":"INSERT INTO devicedata (token, devicename) values (?,?) - parameters:['ebHW2nDKTjWErV6T9pZoUz:APA91bEBc9efKC0ljf2rZtivMf6rkCF38glBN6QLjqKToFb1bCl3SZuS96bs_9uXJ_QE6XLY8FEy1gVZLzms8bhFzd9L_POceK_ztrfLu6lK6B5R46Xxn_SSQm4eiJoPpGVi1WRbR-Ks',undefined]","fatal":false,"errno":45017,"sqlState":"HY000","code":"ER_PARAMETER_UNDEFINED"}
+SqlError: Parameter at position 2 is undefined
+INSERT INTO devicedata (token, devicename) values (?,?) - parameters:['ebHW2nDKTjWErV6T9pZoUz:APA91bEBc9efKC0ljf2rZtivMf6rkCF38glBN6QLjqKToFb1bCl3SZuS96bs_9uXJ_QE6XLY8FEy1gVZLzms8bhFzd9L_POceK_ztrfLu6lK6B5R46Xxn_SSQm4eiJoPpGVi1WRbR-Ks',undefined]
+sql: INSERT INTO devicedata (token, devicename) values (?,?) - parameters:['ebHW2nDKTjWErV6T9pZoUz:APA91bEBc9efKC0ljf2rZtivMf6rkCF38glBN6QLjqKToFb1bCl3SZuS96bs_9uXJ_QE6XLY8FEy1gVZLzms8bhFzd9L_POceK_ztrfLu6lK6B5R46Xxn_SSQm4eiJoPpGVi1WRbR-Ks',undefined]
+    at module.exports.createError (C:\Users\alex\node_modules\mariadb\lib\misc\errors.js:57:10)
+    at Query.throwUnexpectedError (C:\Users\alex\node_modules\mariadb\lib\cmd\command.js:40:24)
+    at Query.throwNewError (C:\Users\alex\node_modules\mariadb\lib\cmd\command.js:70:22)
+    at Query.validateParameters (C:\Users\alex\node_modules\mariadb\lib\cmd\query.js:176:14)
+    at Query.start (C:\Users\alex\node_modules\mariadb\lib\cmd\query.js:54:17)
+    at Connection.addCommandEnablePipeline (C:\Users\alex\node_modules\mariadb\lib\connection.js:1055:11)
+    at Connection.query (C:\Users\alex\node_modules\mariadb\lib\connection.js:1289:10)
+    at new Promise (<anonymous>)
+    at ConnectionPromise.query (C:\Users\alex\node_modules\mariadb\lib\connection-promise.js:87:12)
+    at insertToken (C:\Users\alex\VSProjekte\batteryguard-server\batteryguard.js:156:6) 
+2023-03-13 13:41:40,470 INFO  Gruppe bereits vorhanden (1), nicht leer: theta 
+2023-03-13 13:43:25,332 ERROR Parameter at position 2 is undefined
+INSERT INTO devicedata (token, devicename) values (?,?) - parameters:['ebHW2nDKTjWErV6T9pZoUz:APA91bEBc9efKC0ljf2rZtivMf6rkCF38glBN6QLjqKToFb1bCl3SZuS96bs_9uXJ_QE6XLY8FEy1gVZLzms8bhFzd9L_POceK_ztrfLu6lK6B5R46Xxn_SSQm4eiJoPpGVi1WRbR-Ks',undefined]
+sql: INSERT INTO devicedata (token, devicename) values (?,?) - parameters:['ebHW2nDKTjWErV6T9pZoUz:APA91bEBc9efKC0ljf2rZtivMf6rkCF38glBN6QLjqKToFb1bCl3SZuS96bs_9uXJ_QE6XLY8FEy1gVZLzms8bhFzd9L_POceK_ztrfLu6lK6B5R46Xxn_SSQm4eiJoPpGVi1WRbR-Ks',undefined]
+{"name":"SqlError","text":"Parameter at position 2 is undefined\nINSERT INTO devicedata (token, devicename) values (?,?) - parameters:['ebHW2nDKTjWErV6T9pZoUz:APA91bEBc9efKC0ljf2rZtivMf6rkCF38glBN6QLjqKToFb1bCl3SZuS96bs_9uXJ_QE6XLY8FEy1gVZLzms8bhFzd9L_POceK_ztrfLu6lK6B5R46Xxn_SSQm4eiJoPpGVi1WRbR-Ks',undefined]","sql":"INSERT INTO devicedata (token, devicename) values (?,?) - parameters:['ebHW2nDKTjWErV6T9pZoUz:APA91bEBc9efKC0ljf2rZtivMf6rkCF38glBN6QLjqKToFb1bCl3SZuS96bs_9uXJ_QE6XLY8FEy1gVZLzms8bhFzd9L_POceK_ztrfLu6lK6B5R46Xxn_SSQm4eiJoPpGVi1WRbR-Ks',undefined]","fatal":false,"errno":45017,"sqlState":"HY000","code":"ER_PARAMETER_UNDEFINED"}
+SqlError: Parameter at position 2 is undefined
+INSERT INTO devicedata (token, devicename) values (?,?) - parameters:['ebHW2nDKTjWErV6T9pZoUz:APA91bEBc9efKC0ljf2rZtivMf6rkCF38glBN6QLjqKToFb1bCl3SZuS96bs_9uXJ_QE6XLY8FEy1gVZLzms8bhFzd9L_POceK_ztrfLu6lK6B5R46Xxn_SSQm4eiJoPpGVi1WRbR-Ks',undefined]
+sql: INSERT INTO devicedata (token, devicename) values (?,?) - parameters:['ebHW2nDKTjWErV6T9pZoUz:APA91bEBc9efKC0ljf2rZtivMf6rkCF38glBN6QLjqKToFb1bCl3SZuS96bs_9uXJ_QE6XLY8FEy1gVZLzms8bhFzd9L_POceK_ztrfLu6lK6B5R46Xxn_SSQm4eiJoPpGVi1WRbR-Ks',undefined]
+    at module.exports.createError (C:\Users\alex\node_modules\mariadb\lib\misc\errors.js:57:10)
+    at Query.throwUnexpectedError (C:\Users\alex\node_modules\mariadb\lib\cmd\command.js:40:24)
+    at Query.throwNewError (C:\Users\alex\node_modules\mariadb\lib\cmd\command.js:70:22)
+    at Query.validateParameters (C:\Users\alex\node_modules\mariadb\lib\cmd\query.js:176:14)
+    at Query.start (C:\Users\alex\node_modules\mariadb\lib\cmd\query.js:54:17)
+    at Connection.addCommandEnablePipeline (C:\Users\alex\node_modules\mariadb\lib\connection.js:1055:11)
+    at Connection.query (C:\Users\alex\node_modules\mariadb\lib\connection.js:1289:10)
+    at new Promise (<anonymous>)
+    at ConnectionPromise.query (C:\Users\alex\node_modules\mariadb\lib\connection-promise.js:87:12)
+    at insertToken (C:\Users\alex\VSProjekte\batteryguard-server\batteryguard.js:156:6) 
+2023-03-13 13:43:25,364 INFO  Neue Gruppe: MyGroup 
+2023-03-13 13:44:50,489 ERROR Parameter at position 2 is undefined
+INSERT INTO devicedata (token, devicename) values (?,?) - parameters:['ebHW2nDKTjWErV6T9pZoUz:APA91bEBc9efKC0ljf2rZtivMf6rkCF38glBN6QLjqKToFb1bCl3SZuS96bs_9uXJ_QE6XLY8FEy1gVZLzms8bhFzd9L_POceK_ztrfLu6lK6B5R46Xxn_SSQm4eiJoPpGVi1WRbR-Ks',undefined]
+sql: INSERT INTO devicedata (token, devicename) values (?,?) - parameters:['ebHW2nDKTjWErV6T9pZoUz:APA91bEBc9efKC0ljf2rZtivMf6rkCF38glBN6QLjqKToFb1bCl3SZuS96bs_9uXJ_QE6XLY8FEy1gVZLzms8bhFzd9L_POceK_ztrfLu6lK6B5R46Xxn_SSQm4eiJoPpGVi1WRbR-Ks',undefined]
+{"name":"SqlError","text":"Parameter at position 2 is undefined\nINSERT INTO devicedata (token, devicename) values (?,?) - parameters:['ebHW2nDKTjWErV6T9pZoUz:APA91bEBc9efKC0ljf2rZtivMf6rkCF38glBN6QLjqKToFb1bCl3SZuS96bs_9uXJ_QE6XLY8FEy1gVZLzms8bhFzd9L_POceK_ztrfLu6lK6B5R46Xxn_SSQm4eiJoPpGVi1WRbR-Ks',undefined]","sql":"INSERT INTO devicedata (token, devicename) values (?,?) - parameters:['ebHW2nDKTjWErV6T9pZoUz:APA91bEBc9efKC0ljf2rZtivMf6rkCF38glBN6QLjqKToFb1bCl3SZuS96bs_9uXJ_QE6XLY8FEy1gVZLzms8bhFzd9L_POceK_ztrfLu6lK6B5R46Xxn_SSQm4eiJoPpGVi1WRbR-Ks',undefined]","fatal":false,"errno":45017,"sqlState":"HY000","code":"ER_PARAMETER_UNDEFINED"}
+SqlError: Parameter at position 2 is undefined
+INSERT INTO devicedata (token, devicename) values (?,?) - parameters:['ebHW2nDKTjWErV6T9pZoUz:APA91bEBc9efKC0ljf2rZtivMf6rkCF38glBN6QLjqKToFb1bCl3SZuS96bs_9uXJ_QE6XLY8FEy1gVZLzms8bhFzd9L_POceK_ztrfLu6lK6B5R46Xxn_SSQm4eiJoPpGVi1WRbR-Ks',undefined]
+sql: INSERT INTO devicedata (token, devicename) values (?,?) - parameters:['ebHW2nDKTjWErV6T9pZoUz:APA91bEBc9efKC0ljf2rZtivMf6rkCF38glBN6QLjqKToFb1bCl3SZuS96bs_9uXJ_QE6XLY8FEy1gVZLzms8bhFzd9L_POceK_ztrfLu6lK6B5R46Xxn_SSQm4eiJoPpGVi1WRbR-Ks',undefined]
+    at module.exports.createError (C:\Users\alex\node_modules\mariadb\lib\misc\errors.js:57:10)
+    at Query.throwUnexpectedError (C:\Users\alex\node_modules\mariadb\lib\cmd\command.js:40:24)
+    at Query.throwNewError (C:\Users\alex\node_modules\mariadb\lib\cmd\command.js:70:22)
+    at Query.validateParameters (C:\Users\alex\node_modules\mariadb\lib\cmd\query.js:176:14)
+    at Query.start (C:\Users\alex\node_modules\mariadb\lib\cmd\query.js:54:17)
+    at Connection.addCommandEnablePipeline (C:\Users\alex\node_modules\mariadb\lib\connection.js:1055:11)
+    at Connection.query (C:\Users\alex\node_modules\mariadb\lib\connection.js:1289:10)
+    at new Promise (<anonymous>)
+    at ConnectionPromise.query (C:\Users\alex\node_modules\mariadb\lib\connection-promise.js:87:12)
+    at insertToken (C:\Users\alex\VSProjekte\batteryguard-server\batteryguard.js:156:6) 
+2023-03-13 13:44:50,517 INFO  Gruppe bereits vorhanden, aber leer: MyGroup 
+2023-03-13 13:47:15,733 ERROR Parameter at position 2 is undefined
+INSERT INTO devicedata (token, devicename) values (?,?) - parameters:['ebHW2nDKTjWErV6T9pZoUz:APA91bEBc9efKC0ljf2rZtivMf6rkCF38glBN6QLjqKToFb1bCl3SZuS96bs_9uXJ_QE6XLY8FEy1gVZLzms8bhFzd9L_POceK_ztrfLu6lK6B5R46Xxn_SSQm4eiJoPpGVi1WRbR-Ks',undefined]
+sql: INSERT INTO devicedata (token, devicename) values (?,?) - parameters:['ebHW2nDKTjWErV6T9pZoUz:APA91bEBc9efKC0ljf2rZtivMf6rkCF38glBN6QLjqKToFb1bCl3SZuS96bs_9uXJ_QE6XLY8FEy1gVZLzms8bhFzd9L_POceK_ztrfLu6lK6B5R46Xxn_SSQm4eiJoPpGVi1WRbR-Ks',undefined]
+{"name":"SqlError","text":"Parameter at position 2 is undefined\nINSERT INTO devicedata (token, devicename) values (?,?) - parameters:['ebHW2nDKTjWErV6T9pZoUz:APA91bEBc9efKC0ljf2rZtivMf6rkCF38glBN6QLjqKToFb1bCl3SZuS96bs_9uXJ_QE6XLY8FEy1gVZLzms8bhFzd9L_POceK_ztrfLu6lK6B5R46Xxn_SSQm4eiJoPpGVi1WRbR-Ks',undefined]","sql":"INSERT INTO devicedata (token, devicename) values (?,?) - parameters:['ebHW2nDKTjWErV6T9pZoUz:APA91bEBc9efKC0ljf2rZtivMf6rkCF38glBN6QLjqKToFb1bCl3SZuS96bs_9uXJ_QE6XLY8FEy1gVZLzms8bhFzd9L_POceK_ztrfLu6lK6B5R46Xxn_SSQm4eiJoPpGVi1WRbR-Ks',undefined]","fatal":false,"errno":45017,"sqlState":"HY000","code":"ER_PARAMETER_UNDEFINED"}
+SqlError: Parameter at position 2 is undefined
+INSERT INTO devicedata (token, devicename) values (?,?) - parameters:['ebHW2nDKTjWErV6T9pZoUz:APA91bEBc9efKC0ljf2rZtivMf6rkCF38glBN6QLjqKToFb1bCl3SZuS96bs_9uXJ_QE6XLY8FEy1gVZLzms8bhFzd9L_POceK_ztrfLu6lK6B5R46Xxn_SSQm4eiJoPpGVi1WRbR-Ks',undefined]
+sql: INSERT INTO devicedata (token, devicename) values (?,?) - parameters:['ebHW2nDKTjWErV6T9pZoUz:APA91bEBc9efKC0ljf2rZtivMf6rkCF38glBN6QLjqKToFb1bCl3SZuS96bs_9uXJ_QE6XLY8FEy1gVZLzms8bhFzd9L_POceK_ztrfLu6lK6B5R46Xxn_SSQm4eiJoPpGVi1WRbR-Ks',undefined]
+    at module.exports.createError (C:\Users\alex\node_modules\mariadb\lib\misc\errors.js:57:10)
+    at Query.throwUnexpectedError (C:\Users\alex\node_modules\mariadb\lib\cmd\command.js:40:24)
+    at Query.throwNewError (C:\Users\alex\node_modules\mariadb\lib\cmd\command.js:70:22)
+    at Query.validateParameters (C:\Users\alex\node_modules\mariadb\lib\cmd\query.js:176:14)
+    at Query.start (C:\Users\alex\node_modules\mariadb\lib\cmd\query.js:54:17)
+    at Connection.addCommandEnablePipeline (C:\Users\alex\node_modules\mariadb\lib\connection.js:1055:11)
+    at Connection.query (C:\Users\alex\node_modules\mariadb\lib\connection.js:1289:10)
+    at new Promise (<anonymous>)
+    at ConnectionPromise.query (C:\Users\alex\node_modules\mariadb\lib\connection-promise.js:87:12)
+    at insertToken (C:\Users\alex\VSProjekte\batteryguard-server\batteryguard.js:156:6) 
+2023-03-13 13:47:15,740 INFO  Gruppe bereits vorhanden, aber leer: MyGroup 
+2023-03-13 13:51:11,924 ERROR Parameter at position 2 is undefined
+INSERT INTO devicedata (token, devicename) values (?,?) - parameters:['ebHW2nDKTjWErV6T9pZoUz:APA91bEBc9efKC0ljf2rZtivMf6rkCF38glBN6QLjqKToFb1bCl3SZuS96bs_9uXJ_QE6XLY8FEy1gVZLzms8bhFzd9L_POceK_ztrfLu6lK6B5R46Xxn_SSQm4eiJoPpGVi1WRbR-Ks',undefined]
+sql: INSERT INTO devicedata (token, devicename) values (?,?) - parameters:['ebHW2nDKTjWErV6T9pZoUz:APA91bEBc9efKC0ljf2rZtivMf6rkCF38glBN6QLjqKToFb1bCl3SZuS96bs_9uXJ_QE6XLY8FEy1gVZLzms8bhFzd9L_POceK_ztrfLu6lK6B5R46Xxn_SSQm4eiJoPpGVi1WRbR-Ks',undefined]
+{"name":"SqlError","text":"Parameter at position 2 is undefined\nINSERT INTO devicedata (token, devicename) values (?,?) - parameters:['ebHW2nDKTjWErV6T9pZoUz:APA91bEBc9efKC0ljf2rZtivMf6rkCF38glBN6QLjqKToFb1bCl3SZuS96bs_9uXJ_QE6XLY8FEy1gVZLzms8bhFzd9L_POceK_ztrfLu6lK6B5R46Xxn_SSQm4eiJoPpGVi1WRbR-Ks',undefined]","sql":"INSERT INTO devicedata (token, devicename) values (?,?) - parameters:['ebHW2nDKTjWErV6T9pZoUz:APA91bEBc9efKC0ljf2rZtivMf6rkCF38glBN6QLjqKToFb1bCl3SZuS96bs_9uXJ_QE6XLY8FEy1gVZLzms8bhFzd9L_POceK_ztrfLu6lK6B5R46Xxn_SSQm4eiJoPpGVi1WRbR-Ks',undefined]","fatal":false,"errno":45017,"sqlState":"HY000","code":"ER_PARAMETER_UNDEFINED"}
+SqlError: Parameter at position 2 is undefined
+INSERT INTO devicedata (token, devicename) values (?,?) - parameters:['ebHW2nDKTjWErV6T9pZoUz:APA91bEBc9efKC0ljf2rZtivMf6rkCF38glBN6QLjqKToFb1bCl3SZuS96bs_9uXJ_QE6XLY8FEy1gVZLzms8bhFzd9L_POceK_ztrfLu6lK6B5R46Xxn_SSQm4eiJoPpGVi1WRbR-Ks',undefined]
+sql: INSERT INTO devicedata (token, devicename) values (?,?) - parameters:['ebHW2nDKTjWErV6T9pZoUz:APA91bEBc9efKC0ljf2rZtivMf6rkCF38glBN6QLjqKToFb1bCl3SZuS96bs_9uXJ_QE6XLY8FEy1gVZLzms8bhFzd9L_POceK_ztrfLu6lK6B5R46Xxn_SSQm4eiJoPpGVi1WRbR-Ks',undefined]
+    at module.exports.createError (C:\Users\alex\node_modules\mariadb\lib\misc\errors.js:57:10)
+    at Query.throwUnexpectedError (C:\Users\alex\node_modules\mariadb\lib\cmd\command.js:40:24)
+    at Query.throwNewError (C:\Users\alex\node_modules\mariadb\lib\cmd\command.js:70:22)
+    at Query.validateParameters (C:\Users\alex\node_modules\mariadb\lib\cmd\query.js:176:14)
+    at Query.start (C:\Users\alex\node_modules\mariadb\lib\cmd\query.js:54:17)
+    at Connection.addCommandEnablePipeline (C:\Users\alex\node_modules\mariadb\lib\connection.js:1055:11)
+    at Connection.query (C:\Users\alex\node_modules\mariadb\lib\connection.js:1289:10)
+    at new Promise (<anonymous>)
+    at ConnectionPromise.query (C:\Users\alex\node_modules\mariadb\lib\connection-promise.js:87:12)
+    at insertToken (C:\Users\alex\VSProjekte\batteryguard-server\batteryguard.js:156:6) 
+2023-03-13 13:51:11,925 INFO  Gruppe bereits vorhanden (1), nicht leer: theta 
+2023-03-13 13:51:43,416 ERROR Parameter at position 2 is undefined
+INSERT INTO devicedata (token, devicename) values (?,?) - parameters:['ebHW2nDKTjWErV6T9pZoUz:APA91bEBc9efKC0ljf2rZtivMf6rkCF38glBN6QLjqKToFb1bCl3SZuS96bs_9uXJ_QE6XLY8FEy1gVZLzms8bhFzd9L_POceK_ztrfLu6lK6B5R46Xxn_SSQm4eiJoPpGVi1WRbR-Ks',undefined]
+sql: INSERT INTO devicedata (token, devicename) values (?,?) - parameters:['ebHW2nDKTjWErV6T9pZoUz:APA91bEBc9efKC0ljf2rZtivMf6rkCF38glBN6QLjqKToFb1bCl3SZuS96bs_9uXJ_QE6XLY8FEy1gVZLzms8bhFzd9L_POceK_ztrfLu6lK6B5R46Xxn_SSQm4eiJoPpGVi1WRbR-Ks',undefined]
+{"name":"SqlError","text":"Parameter at position 2 is undefined\nINSERT INTO devicedata (token, devicename) values (?,?) - parameters:['ebHW2nDKTjWErV6T9pZoUz:APA91bEBc9efKC0ljf2rZtivMf6rkCF38glBN6QLjqKToFb1bCl3SZuS96bs_9uXJ_QE6XLY8FEy1gVZLzms8bhFzd9L_POceK_ztrfLu6lK6B5R46Xxn_SSQm4eiJoPpGVi1WRbR-Ks',undefined]","sql":"INSERT INTO devicedata (token, devicename) values (?,?) - parameters:['ebHW2nDKTjWErV6T9pZoUz:APA91bEBc9efKC0ljf2rZtivMf6rkCF38glBN6QLjqKToFb1bCl3SZuS96bs_9uXJ_QE6XLY8FEy1gVZLzms8bhFzd9L_POceK_ztrfLu6lK6B5R46Xxn_SSQm4eiJoPpGVi1WRbR-Ks',undefined]","fatal":false,"errno":45017,"sqlState":"HY000","code":"ER_PARAMETER_UNDEFINED"}
+SqlError: Parameter at position 2 is undefined
+INSERT INTO devicedata (token, devicename) values (?,?) - parameters:['ebHW2nDKTjWErV6T9pZoUz:APA91bEBc9efKC0ljf2rZtivMf6rkCF38glBN6QLjqKToFb1bCl3SZuS96bs_9uXJ_QE6XLY8FEy1gVZLzms8bhFzd9L_POceK_ztrfLu6lK6B5R46Xxn_SSQm4eiJoPpGVi1WRbR-Ks',undefined]
+sql: INSERT INTO devicedata (token, devicename) values (?,?) - parameters:['ebHW2nDKTjWErV6T9pZoUz:APA91bEBc9efKC0ljf2rZtivMf6rkCF38glBN6QLjqKToFb1bCl3SZuS96bs_9uXJ_QE6XLY8FEy1gVZLzms8bhFzd9L_POceK_ztrfLu6lK6B5R46Xxn_SSQm4eiJoPpGVi1WRbR-Ks',undefined]
+    at module.exports.createError (C:\Users\alex\node_modules\mariadb\lib\misc\errors.js:57:10)
+    at Query.throwUnexpectedError (C:\Users\alex\node_modules\mariadb\lib\cmd\command.js:40:24)
+    at Query.throwNewError (C:\Users\alex\node_modules\mariadb\lib\cmd\command.js:70:22)
+    at Query.validateParameters (C:\Users\alex\node_modules\mariadb\lib\cmd\query.js:176:14)
+    at Query.start (C:\Users\alex\node_modules\mariadb\lib\cmd\query.js:54:17)
+    at Connection.addCommandEnablePipeline (C:\Users\alex\node_modules\mariadb\lib\connection.js:1055:11)
+    at Connection.query (C:\Users\alex\node_modules\mariadb\lib\connection.js:1289:10)
+    at new Promise (<anonymous>)
+    at ConnectionPromise.query (C:\Users\alex\node_modules\mariadb\lib\connection-promise.js:87:12)
+    at insertToken (C:\Users\alex\VSProjekte\batteryguard-server\batteryguard.js:156:6) 
+2023-03-13 13:51:43,418 INFO  Gruppe bereits vorhanden (1), nicht leer: theta 

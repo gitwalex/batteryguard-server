@@ -1,5 +1,6 @@
-import axios from 'axios';
-import  serverenv from 'dotenv'
+axios = require('axios');
+serverenv = require( 'dotenv');
+const batteryguard = require('./batteryguard.js');
 const result = serverenv.config({ path: './server.properties' })
 const host = result.parsed.host;
 const port = result.parsed.port;
@@ -28,7 +29,7 @@ async function addToGroup() {
 		const res = await axios.post("http://" + host + ":" + port, body, {
 			headers: customHeaders,
 		});
-		res.status == 250 ? console.log("frei") : console.log("nicht frei")
+		res.status == 251 ? console.log("frei") : console.log("nicht frei")
 	} catch (error) {
 		console.error(error);
 	};
